@@ -44,10 +44,10 @@ def main():
 
     # Jesli plik lokalny istnieje w katalogu roboczym, wczytujemy go w razie pobieramy z sieci
     if os.path.exists(plik_lokalny):
-        print(f"KROK 1 Wczytywanie z pliku lokalnego: '{plik_lokalny}'")
+        print(f"Wczytywanie z pliku lokalnego: '{plik_lokalny}'")
         obraz_oryginalny = wczytaj_obraz(plik_lokalny)
     else:
-        print(f"KROK 1 Wczytywanie zdalne z adresu: '{url_zdalny}'")
+        print(f"Wczytywanie zdalne z adresu: '{url_zdalny}'")
         try:
             obraz_oryginalny = wczytaj_obraz(url_zdalny)
             #zapis lokalnej kopi 
@@ -63,7 +63,7 @@ def main():
     # wyświetlenie obrazu oryginalnego z użyciem matplotlib
     obraz_rgb = cv2.cvtColor(obraz_oryginalny, cv2.COLOR_BGR2RGB)
 
-    print("[KROK 2] Wyświetlanie obrazu oryginalnego w osobnym oknie Matplotlib...")
+    print("Wyświetlanie obrazu oryginalnego w osobnym oknie Matplotlib...")
     plt.figure(num="Obraz Oryginalny", figsize=(8, 6))
     plt.title(f"Obraz oryginalny ({szer_oryg}x{wys_oryg} px, RGB)")
     plt.imshow(obraz_rgb)

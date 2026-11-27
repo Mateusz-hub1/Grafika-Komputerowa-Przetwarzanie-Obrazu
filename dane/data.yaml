@@ -1,0 +1,13 @@
+# sciezki wzgledem tego pliku, zdjecia zmniejszone z 1280x1280 do 640x640
+train: train/images
+val: valid/images
+
+nc: 1
+names: ['pepsi']
+
+roboflow:
+  workspace: detectionanas
+  project: pepsi-logo-detection
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/detectionanas/pepsi-logo-detection/dataset/1

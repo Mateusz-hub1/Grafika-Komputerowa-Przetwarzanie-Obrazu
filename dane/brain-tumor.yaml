@@ -1,0 +1,9 @@
+# zbior brain-tumor od Ultralytics (AGPL-3.0)
+# https://docs.ultralytics.com/datasets/detect/brain-tumor/
+# path jest podmieniany w zad4.py na absolutna sciezke do tego folderu
+path: .
+train: images/train # 994 zdjec
+val: images/val # 121 zdjec
+
+names:
+  0: tumor

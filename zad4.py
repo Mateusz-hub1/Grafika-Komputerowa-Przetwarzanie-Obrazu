@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 from ultralytics import YOLO
 
 # ustawienia treningu
+TRENUJ = False
 EPOCHS = 30
 IMGSZ = 640
 BATCH = 16
@@ -20,6 +21,7 @@ FOLDER = os.path.dirname(os.path.abspath(__file__))
 DANE = os.path.join(FOLDER, "dane")
 RUNS = os.path.join(FOLDER, "runs")
 NAZWA_RUNU = "trening"
+BEST = os.path.join(FOLDER, "best.pt")
 
 
 def wybierz_device():
@@ -159,10 +161,14 @@ def main():
     print(f"Device: {DEVICE}")
     policz_zdjecia()
     sciezka_yaml = przygotuj_yaml()
-    sciezka_best = trenuj(sciezka_yaml)
-    waliduj(sciezka_best, sciezka_yaml)
-    kopiuj_wyniki(sciezka_best)
-    predykcja(sciezka_best)
+    # jak best.pt juz jest to trening pomijamy
+    if TRENUJ or not os.path.exists(BEST):
+        sciezka_best = trenuj(sciezka_yaml)
+        kopiuj_wyniki(sciezka_best)
+    else:
+        print("Pomijam trening, uzywam best.pt")
+    waliduj(BEST, sciezka_yaml)
+    predykcja(BEST)
 
 
 if __name__ == "__main__":

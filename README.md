@@ -28,12 +28,13 @@ python zad4.py
 Skrypt działa z dowolnego katalogu (ścieżki liczone od położenia pliku). Kolejno:
 
 1. tworzy w `runs/` kopię `dane/brain-tumor.yaml` z absolutną ścieżką do `dane/`,
-2. trenuje `yolov8n.pt` (wagi startowe pobierają się same do `runs/`),
-3. robi walidację i wypisuje mAP50 oraz mAP50-95,
-4. kopiuje `results.png`, `confusion_matrix.png` i `best.pt` do tego folderu,
-5. robi predykcję na 6 zdjęciach z `val` i zapisuje `wynik_zad4.png` oraz `przykladowa_predykcja.png`.
+2. trenuje `yolov8n.pt` (wagi startowe pobierają się same do `runs/`) i kopiuje `results.png`, `confusion_matrix.png` oraz `best.pt` do tego folderu,
+3. robi walidację `best.pt` i wypisuje mAP50 oraz mAP50-95,
+4. robi predykcję na 6 zdjęciach z `val` i zapisuje `wynik_zad4.png` oraz `przykladowa_predykcja.png`.
 
-Ustawienia są stałymi na górze pliku: `EPOCHS = 30`, `IMGSZ = 640`, `BATCH = 16`, `CONF = 0.25`. Urządzenie wybierane jest automatycznie: `mps` na Macu z Apple Silicon, w przeciwnym razie `cpu`. Jeśli na `mps` mAP50 wyjdzie 0 albo NaN, skrypt wypisze ostrzeżenie i wtedy trzeba ustawić `DEVICE = "cpu"`. W moim przypadku na `mps` wszystko działało poprawnie.
+Trening (krok 2) wykonuje się tylko wtedy, gdy `TRENUJ = True` albo gdy obok skryptu nie ma pliku `best.pt`. W repozytorium `best.pt` już jest, a domyślnie `TRENUJ = False`, więc skrypt od razu robi walidację i predykcję (kilka sekund zamiast ok. 26 minut treningu). Żeby wytrenować model od nowa, trzeba ustawić `TRENUJ = True`.
+
+Ustawienia są stałymi na górze pliku: `TRENUJ = False`, `EPOCHS = 30`, `IMGSZ = 640`, `BATCH = 16`, `CONF = 0.25`. Urządzenie wybierane jest automatycznie: `mps` na Macu z Apple Silicon, w przeciwnym razie `cpu`. Jeśli na `mps` mAP50 wyjdzie 0 albo NaN, skrypt wypisze ostrzeżenie i wtedy trzeba ustawić `DEVICE = "cpu"`. W moim przypadku na `mps` wszystko działało poprawnie.
 
 Folder `runs/` z pełnymi wynikami treningu nie jest dodawany do repozytorium.
 
